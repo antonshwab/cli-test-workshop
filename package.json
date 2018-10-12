@@ -1,7 +1,7 @@
 {
   "name": "cli-test-workshop",
   "description": "cli for test workshop",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Anton Shvab @antonshwab",
   "bin": {
     "clitw": "./bin/run"
