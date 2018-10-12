@@ -33,7 +33,5 @@ $ make install
 
 $ make test
 
-$ make lint
-
 $ make publish
 ```
