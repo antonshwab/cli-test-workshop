@@ -1,29 +1,33 @@
-import {Command, flags} from '@oclif/command'
+import { Command, flags } from "@oclif/command";
+import { CurrencyExchange } from "./currency";
 
 class CliTestWorkshop extends Command {
-  static description = 'describe the command here'
+  static description = "describe the command here";
 
   static flags = {
     // add --version flag to show CLI version
-    version: flags.version({char: 'v'}),
-    help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
-  }
+    version: flags.version({ char: "v" }),
+    help: flags.help({ char: "h" }),
+    // flag with a value (-b, --base=VALUE)
+    base: flags.string({ char: "b", description: "base to exchange" }),
+    service: flags.string({ char: "n", description: "service name to fetch rates" }),
+  };
 
-  static args = [{name: 'file'}]
+  static args = [{ base: "base", service: "service", name: "file" }];
 
   async run() {
-    const {args, flags} = this.parse(CliTestWorkshop)
+    const { args, flags } = this.parse(CliTestWorkshop);
 
-    const name = flags.name || 'world'
-    this.log(`hello ${name} from ./src/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
-    }
+    const base = flags.base || "EUR";
+    const service = flags.service || "ExchangeRates";
+
+    const currencyExchange = new CurrencyExchange();
+    const result = await currencyExchange.getLatest(base, service);
+    const json = JSON.stringify(result);
+
+    this.log(`Rates for ${base}: ${json}`);
   }
 }
 
-export = CliTestWorkshop
+// export default CliTestWorkshop;
+export = CliTestWorkshop;
