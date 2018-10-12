@@ -9,8 +9,8 @@ class CliTestWorkshop extends Command {
     version: flags.version({ char: "v" }),
     help: flags.help({ char: "h" }),
     // flag with a value (-b, --base=VALUE)
-    base: flags.string({ char: "b", description: "base to exchange" }),
-    service: flags.string({ char: "n", description: "service name to fetch rates" }),
+    base: flags.string({ char: "b", description: "base currency to exchange" }),
+    service: flags.string({ char: "s", description: "service name to fetch rates" }),
   };
 
   static args = [{ base: "base", service: "service", name: "file" }];
