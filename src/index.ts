@@ -21,13 +21,12 @@ class CliTestWorkshop extends Command {
     const base = flags.base || "EUR";
     const service = flags.service || "ExchangeRates";
 
-    const currencyExchange = new CurrencyExchange();
-    const result = await currencyExchange.getLatest(base, service);
+    const currencyExchanger = new CurrencyExchange();
+    const result = await currencyExchanger.getLatest(base, service);
     const json = JSON.stringify(result);
 
     this.log(`Rates for ${base}: ${json}`);
   }
 }
 
-// export default CliTestWorkshop;
 export = CliTestWorkshop;
