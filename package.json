@@ -1,7 +1,7 @@
 {
   "name": "cli-test-workshop",
   "description": "cli for test workshop",
-  "version": "0.2.2",
+  "version": "0.4.0",
   "author": "Anton Shvab @antonshwab",
   "bin": {
     "clitw": "./bin/run"
@@ -17,10 +17,13 @@
   "devDependencies": {
     "@oclif/test": "^1",
     "@oclif/tslint": "^3",
-    "@types/jest": "^23.3.5",
+    "@types/mocha": "^5.2.5",
+    "@types/nock": "^9.3.0",
     "@types/node": "^10",
     "@types/node-fetch": "^2.1.2",
-    "jest": "^23.6.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nock": "^10.0.1",
     "nyc": "^13",
     "ts-jest": "^23.10.4",
     "ts-node": "^7",
@@ -45,9 +48,9 @@
   },
   "repository": "antonshwab/cli-test-workshop",
   "scripts": {
-    "posttest": "tslint -p __tests__ -t stylish",
+    "posttest": "tslint -p test -t stylish",
     "prepack": "rm -rf lib && tsc -b",
-    "test": "tsc -b && jest --colors"
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\""
   },
   "types": "lib/index.d.ts"
 }
